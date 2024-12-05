@@ -18,12 +18,36 @@ class ListPictureView extends StatelessWidget {
           itemCount: controller.pictures.length,
           itemBuilder: (context, index) {
             final picture = controller.pictures[index];
-            return ListTile(
-              leading: Image.network(picture['download_url'], width: 50, height: 50),
-              title: Text(picture['author']),
+            return GestureDetector(
               onTap: () {
                 Get.toNamed('/detail', arguments: picture['id']);
               },
+              child: Card(
+                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                elevation: 5,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Gambar full-width
+                    Image.network(
+                      picture['download_url'],
+                      width: MediaQuery.of(context).size.width,
+                      height: 200, // Atur tinggi gambar sesuai kebutuhan
+                      fit: BoxFit.cover, // Agar gambar tidak terdistorsi
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        picture['author'] ?? 'Unknown author',
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             );
           },
         );

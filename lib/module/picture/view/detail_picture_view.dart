@@ -22,9 +22,9 @@ class DetailPictureView extends StatelessWidget {
                 children: [
                   Image.network(detail['download_url']),
                   SizedBox(height: 10),
-                  Text('Author: ${detail['author']}', style: TextStyle(fontSize: 18)),
-                  Text('Width: ${detail['width']}'),
-                  Text('Height: ${detail['height']}'),
+                  Text('token by: ${detail['author']}', style: TextStyle(fontSize: 18)),
+                  // Text('Width: ${detail['width']}'),
+              
                 ],
               );
       }),
